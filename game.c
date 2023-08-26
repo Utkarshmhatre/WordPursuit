@@ -15,7 +15,7 @@ char *wordList[MAX_WORDS] = {
     "orange"
 };
 
-void displayHangman(int attempts) {
+void displayWordPursuit(int attempts) {
     printf("  ____\n");
     printf(" |    %s\n", attempts > 0 ? "O" : "");
     printf(" |   %s%s%s\n", attempts > 2 ? "/" : " ", attempts > 1 ? "|" : "", attempts > 3 ? "\\" : "");
@@ -38,11 +38,11 @@ int main() {
     }
     guessedWord[wordLength] = '\0';
 
-    printf("Welcome to Hangman!\n");
+    printf("Welcome to WordPursuit!\n");
 
     while (correctGuesses < wordLength && attempts < MAX_ATTEMPTS) {
         printf("\nWord: %s\n", guessedWord);
-        displayHangman(attempts);
+        displayWordPursuit(attempts);
 
         char guess;
         printf("Guess a letter: ");
@@ -67,7 +67,7 @@ int main() {
         printf("\nCongratulations! You guessed the word: %s\n", wordToGuess);
     } else {
         printf("\nSorry, you're out of attempts. The word was: %s\n", wordToGuess);
-        displayHangman(attempts);
+        displayWordPursuit(attempts);
     }
 
     return 0;
