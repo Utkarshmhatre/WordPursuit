@@ -52,8 +52,9 @@ void enterCustomWords(char *customWords[], int *customWordCount) {
     *customWordCount = i;
 }
 
-int main() {
-    srand(time(NULL));
+int main() { 
+
+     
 
     int wordCount = MAX_WORDS;  // Default word count
     char *wordToGuess = wordList[rand() % wordCount];  // Select word from default list
