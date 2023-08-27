@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 #define MAX_ATTEMPTS 6
 #define MAX_WORDS 5
 #define MAX_CUSTOM_WORDS 10
-#define MAX_WORD_LENGTH 10
+#define MAX_WORD_LENGTH 20
 #define MAX_CUSTOM_WORD_LENGTH 20
 
 char *wordList[MAX_WORDS] = {
@@ -87,24 +88,39 @@ int main() {
 
     while (correctGuesses < wordLength && attempts < MAX_ATTEMPTS) {
         printf("\nWord: %s\n", guessedWord);
-        displayWordPursuit(attempts, 0); // Pass attempts and gameOver=0
+        displayWordPursuit(attempts, 0);
 
-        char guess;
-        printf("Guess a letter: ");
-        scanf(" %c", &guess);
+        char guess[MAX_WORD_LENGTH];
+        printf("Guess a letter or the entire word: ");
+        scanf("%s", guess);
 
-        int found = 0;
-        for (int i = 0; i < wordLength; i++) {
-            if (wordToGuess[i] == guess && guessedWord[i] == '_') {
-                guessedWord[i] = guess;
-                correctGuesses++;
-                found = 1;
-            }
+        for (int i = 0; guess[i]; i++) {
+            guess[i] = tolower(guess[i]);
         }
 
-        if (!found) {
-            attempts++;
-            printf("Incorrect guess!\n");
+        if (strlen(guess) == 1 && isalpha(guess[0])) {
+            int found = 0;
+            for (int i = 0; i < wordLength; i++) {
+                if (wordToGuess[i] == guess[0] && guessedWord[i] == '_') {
+                    guessedWord[i] = guess[0];
+                    correctGuesses++;
+                    found = 1;
+                }
+            }
+
+            if (!found) {
+                attempts++;
+                printf("Incorrect guess!\n");
+            }
+        } else if (strlen(guess) > 1) {
+            if (strcmp(guess, wordToGuess) == 0) {
+                correctGuesses = wordLength;
+            } else {
+                attempts++;
+                printf("Incorrect guess!\n");
+            }
+        } else {
+            printf("Please enter a valid letter or word.\n");
         }
     }
 
@@ -112,7 +128,7 @@ int main() {
         printf("\nCongratulations! You guessed the word: %s\n", wordToGuess);
     } else {
         printf("\nSorry, you're out of attempts. The word was: %s\n", wordToGuess);
-        displayWordPursuit(attempts, 1); // Pass attempts and gameOver=1
+        displayWordPursuit(attempts, 1);
     }
 
     return 0;
