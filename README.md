@@ -1,7 +1,6 @@
 # WordPursuit
 
-![GitHub last commit](https://img.shields.io/github/last-commit/your-username/WordPursuit)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/your-username/WordPursuit)
+
 
 Welcome to WordPursuit, an exhilarating text-based word guessing game coded in C! Embark on a journey of wits and words as you delve into a challenging adventure of guessing hidden words and solving word puzzles. Whether you're a seasoned wordsmith or just looking for a fun challenge, WordPursuit is here to test your vocabulary skills and strategic thinking.
 
