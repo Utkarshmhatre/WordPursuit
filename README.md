@@ -24,7 +24,7 @@ Welcome to WordPursuit, an exhilarating text-based word guessing game coded in C
 6. Attempt to guess the word correctly before running out of attempts.
 7. Enjoy the challenge and have fun!
 
-## Screenshots
+
 
 > Insert a few screenshots of the game here, showcasing its user interface and gameplay.
 
